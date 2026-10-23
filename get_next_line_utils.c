@@ -6,7 +6,7 @@
 /*   By: acuevas <acuevas@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 12:51:55 by acuevas           #+#    #+#             */
-/*   Updated: 2026/10/23 15:30:51 by acuevas          ###   ########.fr       */
+/*   Updated: 2026/10/23 19:34:33 by acuevas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,30 @@
 #include <stdlib.h>
 
 
+
+char	*extract_line(char *stash)
+{
+	size_t	i;
+	size_t	j;
+	char	*result;
+
+	i = 0;
+	while (stash[i] && stash[i] != '\n')
+		i++;
+	if (stash[i] == '\n')
+		i++;
+	result = malloc(i + 1);
+	if (result == NULL)
+		return (NULL);
+	j = 0;
+	while (j < i)
+	{
+		result[j] = stash[j];
+		j++;
+	}
+	result[j] = '\0';
+	return (result);
+}
 
 /*
 size_t	ft_strlen(char *str)
