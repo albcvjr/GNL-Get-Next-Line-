@@ -6,14 +6,11 @@
 /*   By: acuevas <acuevas@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 12:51:55 by acuevas           #+#    #+#             */
-/*   Updated: 2026/10/23 19:34:33 by acuevas          ###   ########.fr       */
+/*   Updated: 2026/10/26 21:49:24 by acuevas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-
-
+#include "get_next_line.h"
 
 char	*extract_line(char *stash)
 {
