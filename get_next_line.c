@@ -6,11 +6,100 @@
 /*   By: acuevas <acuevas@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 12:12:28 by acuevas           #+#    #+#             */
-/*   Updated: 2026/10/26 21:49:01 by acuevas          ###   ########.fr       */
+/*   Updated: 2026/10/26 22:28:22 by acuevas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+static int	read_to_stash(int fd, char **stash)
+{
+	char	*buffer;
+	char	*new_stash;
+	ssize_t	bytes_read;
+
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (buffer == NULL)
+		return (1);
+	bytes_read = 1;
+	while (!find_newline(*stash) && bytes_read > 0)
+	{
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read < 0)
+		{
+			free(buffer);
+			return (1);
+		}
+		if (bytes_read == 0)
+			break ;
+		buffer[bytes_read] = '\0';
+		new_stash = ft_strjoin(*stash, buffer);
+		if (new_stash == NULL)
+		{
+			free(buffer);
+			return (1);
+		}
+		free(*stash);
+		*stash = new_stash;
+	}
+	free(buffer);
+	return (0);
+}
+
+static char	*copy_rest(char *stash, size_t i, size_t len)
+{
+	char	*result;
+	size_t	j;
+
+	result = malloc(sizeof(char) * (len + 1));
+	if (result == NULL)
+		return (NULL);
+	j = 0;
+	while (j < len)
+	{
+		result[j] = stash[i];
+		j++;
+		i++;
+	}
+	result[j] = '\0';
+	return (result);
+}
+
+static char	*update_stash(char *stash)
+{
+	size_t	i;
+	size_t	j;
+	size_t	len;
+	char	*result;
+
+	i = 0;
+	while (stash[i] && stash[i] != '\n')
+		i++;
+	if (stash[i] == '\n')
+		i++;
+	len = ft_strlen(stash) - i;
+	if (len == 0)
+	{
+		free(stash);
+		return (NULL);
+	}
+	result = malloc(len + 1);
+	if (result == NULL)
+	{
+		free(stash);
+		return (NULL);
+	}
+	j = 0;
+	while (j < len)
+	{
+		result[j] = stash[i];
+		j++;
+		i++;
+	}
+	result[j] = '\0';
+	free(stash);
+	return (result);
+}
 
 char	*get_next_line(int fd)
 {
@@ -47,74 +136,4 @@ char	*get_next_line(int fd)
 	}
 	stash = update_stash(stash);
 	return (line);
-}
-
-static int	read_to_stash(int fd, char **stash)
-{
-	char	*buffer;
-	char	*new_stash;
-	ssize_t	bytes_read;
-
-	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (buffer == NULL)
-		return (1);
-	bytes_read = 1;
-	while (!find_newline(*stash) && bytes_read > 0)
-	{
-		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read < 0)
-		{
-			free(buffer);
-			return (1);
-		}
-		if (bytes_read == 0)
-			break ;
-		buffer[bytes_read] = '\0';
-		new_stash = ft_strjoin(*stash, buffer);
-		if (new_stash == NULL)
-		{
-			free(buffer);
-			return (1);
-		}
-		free(*stash);
-		*stash = new_stash;
-	}
-	free(buffer);
-	return (0);
-}
-
-char	*update_stash(char *stash)
-{
-	size_t	i;
-	size_t	j;
-	size_t	len;
-	char	*result;
-
-	i = 0;
-	while (stash[i] && stash[i] != '\n')
-		i++;
-	if (stash[i] == '\n')
-		i++;
-	len = ft_strlen(stash) - i;
-	if (len == 0)
-	{
-		free(stash);
-		return (NULL);
-	}
-	result = malloc(len + 1);
-	if (result == NULL)
-	{
-		free(stash);
-		return (NULL);
-	}
-	j = 0;
-	while (j < len)
-	{
-		result[j] = stash[i];
-		j++;
-		i++;
-	}
-	result[j] = '\0';
-	free(stash);
-	return (result);
 }

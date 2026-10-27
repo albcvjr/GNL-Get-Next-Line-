@@ -6,7 +6,7 @@
 /*   By: acuevas <acuevas@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 12:51:55 by acuevas           #+#    #+#             */
-/*   Updated: 2026/10/26 21:49:24 by acuevas          ###   ########.fr       */
+/*   Updated: 2026/10/26 21:59:18 by acuevas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ char	*extract_line(char *stash)
 	return (result);
 }
 
-/*
 size_t	ft_strlen(char *str)
 {
 	size_t	i;
@@ -47,21 +46,12 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-int	main(void)
-{
-	char	*str;
-
-	str = "\n";
-	printf("%zu\n", ft_strlen(str));
-	return (0);
-}
-
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*result;
 	size_t	i;
 	size_t	len_s1;
-	
+
 	len_s1 = ft_strlen(s1);
 	i = 0;
 	result = malloc(sizeof(char) * (len_s1 + ft_strlen(s2)) + 1);
@@ -75,12 +65,27 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[i - len_s1])
 	{
 		result[i] = s2[i - len_s1];
-		i++; 
+		i++;
 	}
 	result[i] = '\0';
 	return (result);
 }
 
+int	find_newline(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\n')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+/*
 int	main(void)
 {
 	char	*str;
@@ -94,22 +99,15 @@ int	main(void)
 	free(str);
 	return (0);
 }
-
-/*
-int	find_newline(char *str)
+	
+int	main(void)
 {
-	size_t	i;
+	char	*str;
 
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '\n')
-		return (1);
-		i++;
-	}
-	return (0);	
+	str = "\n";
+	printf("%zu\n", ft_strlen(str));
+	return (0);
 }
-
 int	main(void)
 {
 	char	*str;

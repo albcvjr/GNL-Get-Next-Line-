@@ -6,7 +6,7 @@
 /*   By: acuevas <acuevas@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 21:40:12 by acuevas           #+#    #+#             */
-/*   Updated: 2026/10/26 21:48:28 by acuevas          ###   ########.fr       */
+/*   Updated: 2026/10/26 22:06:09 by acuevas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 #ifndef BUFFER_SIZE
 # define BUFFER_SIZE 10
+
 #endif
 
 char	*get_next_line(int fd);
