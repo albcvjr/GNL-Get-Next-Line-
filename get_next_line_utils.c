@@ -6,34 +6,46 @@
 /*   By: acuevas <acuevas@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 12:51:55 by acuevas           #+#    #+#             */
-/*   Updated: 2026/10/26 21:59:18 by acuevas          ###   ########.fr       */
+/*   Updated: 2026/10/28 01:25:44 by acuevas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*extract_line(char *stash)
+static int	append_to_stash(char **stash, char *buffer)
 {
-	size_t	i;
-	size_t	j;
-	char	*result;
+	char	*new_stash;
 
-	i = 0;
-	while (stash[i] && stash[i] != '\n')
-		i++;
-	if (stash[i] == '\n')
-		i++;
-	result = malloc(i + 1);
-	if (result == NULL)
-		return (NULL);
-	j = 0;
-	while (j < i)
+	new_stash = ft_strjoin(*stash, buffer);
+	if (new_stash == NULL)
+		return (1);
+	free(*stash);
+	*stash = new_stash;
+	return (0);
+}
+
+int	fill_stash(int fd, char **stash)
+{
+	char	*buffer;
+	ssize_t	bytes_read;
+
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (buffer == NULL)
+		return (1);
+	bytes_read = 1;
+	while (!find_newline(*stash) && bytes_read > 0)
 	{
-		result[j] = stash[j];
-		j++;
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read <= 0)
+			break ;
+		buffer[bytes_read] = '\0';
+		if (append_to_stash(stash, buffer) == 1)
+			bytes_read = -1;
 	}
-	result[j] = '\0';
-	return (result);
+	free(buffer);
+	if (bytes_read < 0)
+		return (1);
+	return (0);
 }
 
 size_t	ft_strlen(char *str)
@@ -84,36 +96,3 @@ int	find_newline(char *str)
 	}
 	return (0);
 }
-
-/*
-int	main(void)
-{
-	char	*str;
-
-	str = ft_strjoin("", "42");
-	printf("%s\n", str);
-	free(str);
-
-	str = ft_strjoin("GNL", "");
-	printf("%s\n", str);
-	free(str);
-	return (0);
-}
-	
-int	main(void)
-{
-	char	*str;
-
-	str = "\n";
-	printf("%zu\n", ft_strlen(str));
-	return (0);
-}
-int	main(void)
-{
-	char	*str;
-
-	str = "abcfgh";
-	printf("%d\n", find_newline(str));
-	return(0);
-}
-*/
