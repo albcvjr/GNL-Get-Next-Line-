@@ -6,7 +6,7 @@
 /*   By: acuevas <acuevas@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 21:40:12 by acuevas           #+#    #+#             */
-/*   Updated: 2026/10/27 23:46:32 by acuevas          ###   ########.fr       */
+/*   Updated: 2026/10/28 02:11:40 by acuevas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@
 # endif
 
 int		fill_stash(int fd, char **stash);
-int		find_newline(char *str);
 size_t	ft_strlen(char *str);
 char	*get_next_line(int fd);
-char	*ft_strjoin(char *s1, char *s2);
-char	*extract_line(char *stash);
 
 #endif

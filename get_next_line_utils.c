@@ -6,7 +6,7 @@
 /*   By: acuevas <acuevas@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 12:51:55 by acuevas           #+#    #+#             */
-/*   Updated: 2026/10/28 01:25:44 by acuevas          ###   ########.fr       */
+/*   Updated: 2026/10/28 02:11:27 by acuevas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ size_t	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+static char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*result;
 	size_t	i;
@@ -83,7 +83,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (result);
 }
 
-int	find_newline(char *str)
+static int	find_newline(char *str)
 {
 	size_t	i;
 

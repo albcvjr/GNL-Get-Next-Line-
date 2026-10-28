@@ -6,7 +6,7 @@
 /*   By: acuevas <acuevas@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 12:12:28 by acuevas           #+#    #+#             */
-/*   Updated: 2026/10/28 00:28:37 by acuevas          ###   ########.fr       */
+/*   Updated: 2026/10/28 02:02:19 by acuevas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	update_stash(char **stash)
 	return (0);
 }
 
-char	*extract_line(char *stash)
+static char	*extract_line(char *stash)
 {
 	size_t	i;
 	size_t	j;
