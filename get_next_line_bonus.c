@@ -6,7 +6,7 @@
 /*   By: acuevas <acuevas@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 12:12:28 by acuevas           #+#    #+#             */
-/*   Updated: 2026/11/12 22:05:23 by acuevas          ###   ########.fr       */
+/*   Updated: 2026/11/12 22:28:32 by acuevas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,7 @@ static char	*copy_rest(char *stash, size_t i, size_t len)
 		return (NULL);
 	j = 0;
 	while (j < len)
-	{
-		result[j] = stash[i];
-		j++;
-		i++;
-	}
+		result[j++] = stash[i++];
 	result[j] = '\0';
 	return (result);
 }
@@ -103,7 +99,7 @@ static char	*extract_line(char *stash)
 	return (result);
 }
 
-char	*get_next_line_(int fd)
+char	*get_next_line_bonus(int fd)
 {
 	static char	*container[1024];
 	char		*stash;

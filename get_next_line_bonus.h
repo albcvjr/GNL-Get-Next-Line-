@@ -6,7 +6,7 @@
 /*   By: acuevas <acuevas@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/26 21:40:12 by acuevas           #+#    #+#             */
-/*   Updated: 2026/11/12 21:33:54 by acuevas          ###   ########.fr       */
+/*   Updated: 2026/11/12 22:15:52 by acuevas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 
 # endif
 
-int		fill_stash(int fd, char **stash);
-size_t	ft_strlen(char *str);
-char	*get_next_line(int fd);
+int		fill_stash_bonus(int fd, char **stash);
+size_t	ft_strlen_bonus(char *str);
+char	*get_next_line_bonus(int fd);
 
 #endif

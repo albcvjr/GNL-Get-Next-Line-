@@ -6,11 +6,11 @@
 /*   By: acuevas <acuevas@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 12:51:55 by acuevas           #+#    #+#             */
-/*   Updated: 2026/11/12 22:05:02 by acuevas          ###   ########.fr       */
+/*   Updated: 2026/11/12 22:16:42 by acuevas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.bonus.h"
+#include "get_next_line_bonus.h"
 
 static int	find_newline(char *str)
 {
@@ -63,7 +63,7 @@ static int	append_to_stash(char **stash, char *buffer)
 	return (0);
 }
 
-int	fill_stash(int fd, char **stash)
+int	fill_stash_bonus(int fd, char **stash)
 {
 	char	*buffer;
 	ssize_t	bytes_read;
@@ -87,7 +87,7 @@ int	fill_stash(int fd, char **stash)
 	return (0);
 }
 
-size_t	ft_strlen(char *str)
+size_t	ft_strlen_bonus(char *str)
 {
 	size_t	i;
 
