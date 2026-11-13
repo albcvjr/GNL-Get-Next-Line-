@@ -82,5 +82,6 @@ Se ha utilizado inteligencia artificial como herramienta de apoyo durante el apr
 - Repasar conceptos de memoria dinámica y variables estáticas.
 - Analizar la lógica de lectura y conservación de los caracteres pendientes.
 - Plantear casos de prueba.
+- Crear la batería de pruebas.
 
 El desarrollo del proyecto se ha realizado de forma progresiva, trabajando sobre la implementación y comprensión de cada una de sus partes.
