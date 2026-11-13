@@ -6,7 +6,7 @@
 /*   By: acuevas <acuevas@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 12:51:55 by acuevas           #+#    #+#             */
-/*   Updated: 2026/11/12 22:16:42 by acuevas          ###   ########.fr       */
+/*   Updated: 2026/11/13 01:29:48 by acuevas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ static char	*ft_strjoin(char *s1, char *s2)
 	size_t	i;
 	size_t	len_s1;
 
-	len_s1 = ft_strlen(s1);
+	len_s1 = ft_strlen_bonus(s1);
 	i = 0;
-	result = malloc(sizeof(char) * (len_s1 + ft_strlen(s2)) + 1);
+	result = malloc(sizeof(char) * (len_s1 + ft_strlen_bonus(s2)) + 1);
 	if (result == NULL)
 		return (NULL);
 	while (s1[i])

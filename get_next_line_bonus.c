@@ -6,7 +6,7 @@
 /*   By: acuevas <acuevas@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 12:12:28 by acuevas           #+#    #+#             */
-/*   Updated: 2026/11/12 22:28:32 by acuevas          ###   ########.fr       */
+/*   Updated: 2026/11/13 01:31:10 by acuevas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	init_stash(int fd, char **stash)
 			return (1);
 		(*stash)[0] = '\0';
 	}
-	if (fill_stash(fd, stash) == 1)
+	if (fill_stash_bonus(fd, stash) == 1)
 	{
 		free(*stash);
 		*stash = NULL;
@@ -41,6 +41,8 @@ static char	*copy_rest(char *stash, size_t i, size_t len)
 	char	*result;
 	size_t	j;
 
+	if (len == 0)
+		return (NULL);
 	result = malloc(sizeof(char) * (len + 1));
 	if (result == NULL)
 		return (NULL);
@@ -62,9 +64,9 @@ static int	update_stash(char **stash)
 		i++;
 	if ((*stash)[i] == '\n')
 		i++;
-	len = ft_strlen(*stash) - i;
+	len = ft_strlen_bonus(*stash) - i;
 	result = copy_rest(*stash, i, len);
-	if (result == NULL)
+	if (result == NULL && len > 0)
 	{
 		free(*stash);
 		*stash = NULL;
@@ -102,28 +104,23 @@ static char	*extract_line(char *stash)
 char	*get_next_line_bonus(int fd)
 {
 	static char	*container[1024];
-	char		*stash;
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
 		return (NULL);
-	stash = container[fd];
-	if (init_stash(fd, &stash) != 0)
+	if (init_stash(fd, &container[fd]) != 0)
 		return (NULL);
-	line = extract_line(stash);
+	line = extract_line(container[fd]);
 	if (line == NULL)
 	{
-		free(stash);
-		stash = NULL;
+		free(container[fd]);
 		container[fd] = NULL;
 		return (NULL);
 	}
-	if (update_stash(&stash) == 1)
+	if (update_stash(&container[fd]) == 1)
 	{
 		free(line);
-		container[fd] = NULL;
 		return (NULL);
 	}
-	container[fd] = stash;
 	return (line);
 }
