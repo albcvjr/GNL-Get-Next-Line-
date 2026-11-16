@@ -6,7 +6,7 @@
 /*   By: acuevas <acuevas@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 12:12:28 by acuevas           #+#    #+#             */
-/*   Updated: 2026/11/16 20:14:24 by acuevas          ###   ########.fr       */
+/*   Updated: 2026/11/16 20:59:52 by acuevas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	init_stash(int fd, char **stash)
 			return (1);
 		(*stash)[0] = '\0';
 	}
-	if (fill_stash_bonus(fd, stash) == 1)
+	if (fill_stash(fd, stash) == 1)
 	{
 		free(*stash);
 		*stash = NULL;
@@ -64,7 +64,7 @@ static int	update_stash(char **stash)
 		i++;
 	if ((*stash)[i] == '\n')
 		i++;
-	len = ft_strlen_bonus(*stash) - i;
+	len = ft_strlen(*stash) - i;
 	result = copy_rest(*stash, i, len);
 	if (result == NULL && len > 0)
 	{
