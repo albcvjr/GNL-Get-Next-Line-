@@ -6,7 +6,7 @@
 /*   By: acuevas <acuevas@student.42madrid.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/23 12:51:55 by acuevas           #+#    #+#             */
-/*   Updated: 2026/11/13 01:29:48 by acuevas          ###   ########.fr       */
+/*   Updated: 2026/11/16 20:13:48 by acuevas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	append_to_stash(char **stash, char *buffer)
 	return (0);
 }
 
-int	fill_stash_bonus(int fd, char **stash)
+int	fill_stash(int fd, char **stash)
 {
 	char	*buffer;
 	ssize_t	bytes_read;
@@ -87,7 +87,7 @@ int	fill_stash_bonus(int fd, char **stash)
 	return (0);
 }
 
-size_t	ft_strlen_bonus(char *str)
+size_t	ft_strlen(char *str)
 {
 	size_t	i;
 
